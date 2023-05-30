@@ -1,5 +1,17 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 
+interface IRegister {
+  email: string;
+  password: string;
+}
 @Controller('user')
 export class UserController {
   @Get()
@@ -19,5 +31,12 @@ export class UserController {
       id: id,
       name: 'HAO',
     };
+  }
+
+  @Post('register')
+  postRegister(@Body() payload: IRegister) {
+    console.log('payload', payload);
+
+    return JSON.stringify(payload);
   }
 }
